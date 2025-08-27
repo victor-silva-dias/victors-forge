@@ -6,67 +6,90 @@ import { Container, Flex } from '../../styles/GlobalStyles';
 import principalLogo from '../../assets/principal.svg';
 
 const HeaderContainer = styled.header`
-  background-color: ${theme.colors.primary};
-  padding: ${theme.spacing.md} 0;
+  background-color: ${theme.colors.backgroundPure};
+  border-bottom: 1px solid ${theme.colors.border};
+  padding: ${theme.spacing.sm} 0;
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: ${theme.shadows.medium};
+  backdrop-filter: blur(8px);
+  background-color: rgba(250, 252, 250, 0.95);
+  transition: ${theme.transitions.normal};
 `;
 
 const Logo = styled.div`
   img {
-    height: 48px;
+    height: 40px;
     width: auto;
+    transition: ${theme.transitions.normal};
+  }
+  
+  &:hover img {
+    transform: scale(1.02);
   }
 `;
 
 const Nav = styled.nav`
   ul {
     display: flex;
-    gap: ${theme.spacing.xl};
+    gap: ${theme.spacing.lg};
     align-items: center;
   }
 
-  @media (max-width: ${theme.breakpoints.mobile}) {
+  @media (max-width: ${theme.breakpoints.tablet}) {
     ul {
       gap: ${theme.spacing.md};
+    }
+  }
+  
+  @media (max-width: ${theme.breakpoints.mobile}) {
+    ul {
+      gap: ${theme.spacing.sm};
     }
   }
 `;
 
 const NavLink = styled(Link)<{ $isActive: boolean }>`
-  font-family: ${theme.fonts.heading};
-  font-weight: 500;
-  font-size: 1.1rem;
-  color: ${props => props.$isActive ? theme.colors.accent : theme.colors.text.primary};
+  font-family: ${theme.fonts.body};
+  font-weight: ${props => props.$isActive ? 600 : 500};
+  font-size: ${theme.fluid.body};
+  color: ${props => props.$isActive ? theme.colors.primary : theme.colors.text.secondary};
   padding: ${theme.spacing.sm} ${theme.spacing.md};
-  border-radius: ${theme.borderRadius.md};
-  transition: all 0.3s ease;
+  border-radius: ${theme.borderRadius.sm};
+  transition: ${theme.transitions.normal};
   position: relative;
+  text-transform: capitalize;
+  letter-spacing: -0.01em;
 
   &:hover {
-    color: ${theme.colors.action};
-    background-color: rgba(255, 255, 255, 0.1);
+    color: ${theme.colors.text.primary};
+    background-color: ${theme.colors.backgroundSecondary};
   }
 
   ${props => props.$isActive && `
+    color: ${theme.colors.primary};
+    
     &::after {
       content: '';
       position: absolute;
-      bottom: -8px;
+      bottom: -2px;
       left: 50%;
       transform: translateX(-50%);
-      width: 60%;
+      width: 20px;
       height: 2px;
       background-color: ${theme.colors.accent};
-      border-radius: 2px;
+      border-radius: ${theme.borderRadius.full};
     }
   `}
 
-  @media (max-width: ${theme.breakpoints.mobile}) {
+  @media (max-width: ${theme.breakpoints.tablet}) {
     font-size: 0.9rem;
     padding: ${theme.spacing.xs} ${theme.spacing.sm};
+  }
+  
+  @media (max-width: ${theme.breakpoints.mobile}) {
+    font-size: 0.85rem;
+    padding: ${theme.spacing.xs} ${theme.spacing.xs};
   }
 `;
 

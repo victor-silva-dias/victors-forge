@@ -5,54 +5,84 @@ import { theme } from '../../styles/theme';
 import { Container, Section, Grid } from '../../styles/GlobalStyles';
 
 const CasesSection = styled(Section)`
-  background-color: ${theme.colors.background};
-  color: ${theme.colors.text.secondary};
+  background: ${theme.colors.background};
+  color: ${theme.colors.text.primary};
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, 
+      rgba(74, 110, 72, 0.01) 0%, 
+      rgba(47, 62, 70, 0.02) 50%,
+      rgba(212, 160, 23, 0.01) 100%
+    );
+    pointer-events: none;
+  }
 `;
 
 const Title = styled(motion.h2)`
-  font-size: 2.5rem;
-  color: ${theme.colors.accent};
+  font-size: ${theme.fluid.sectionTitle};
+  font-weight: 600;
+  color: ${theme.colors.text.primary};
   text-align: center;
   margin-bottom: ${theme.spacing.xxl};
+  letter-spacing: -0.02em;
+  position: relative;
+  z-index: 1;
 
   @media (max-width: ${theme.breakpoints.mobile}) {
-    font-size: 2rem;
+    font-size: ${theme.fluid.heroSubtitle};
   }
 `;
 
 const CaseCard = styled(motion.div)`
-  background: linear-gradient(135deg, ${theme.colors.primary} 0%, ${theme.colors.neutral} 100%);
+  background: ${theme.colors.backgroundPure};
   color: ${theme.colors.text.primary};
   padding: ${theme.spacing.xxl};
-  border-radius: ${theme.borderRadius.lg};
-  box-shadow: ${theme.shadows.medium};
-  transition: all 0.3s ease;
-  border-left: 4px solid ${theme.colors.accent};
+  border-radius: ${theme.borderRadius.sm};
+  border: 1px solid ${theme.colors.border};
+  box-shadow: ${theme.shadows.subtle};
+  transition: ${theme.transitions.normal};
+  position: relative;
+  z-index: 1;
 
   &:hover {
-    transform: translateY(-8px);
-    box-shadow: ${theme.shadows.strong};
+    transform: translateY(-3px);
+    box-shadow: ${theme.shadows.medium};
+    border-color: ${theme.colors.neutral};
   }
 
   h3 {
-    font-size: 1.5rem;
-    color: ${theme.colors.accent};
+    font-size: ${theme.fluid.heroSubtitle};
+    font-weight: 600;
+    color: ${theme.colors.text.primary};
     margin-bottom: ${theme.spacing.md};
+    letter-spacing: -0.01em;
   }
 
   .problem {
     margin-bottom: ${theme.spacing.lg};
     
     h4 {
-      color: ${theme.colors.action};
-      font-size: 1.1rem;
+      color: ${theme.colors.primary};
+      font-size: ${theme.fluid.body};
+      font-weight: 600;
       margin-bottom: ${theme.spacing.sm};
     }
 
     p {
-      font-size: 0.95rem;
+      font-size: ${theme.fluid.body};
       line-height: 1.6;
-      opacity: 0.9;
+      color: ${theme.colors.text.secondary};
     }
   }
 
@@ -60,22 +90,24 @@ const CaseCard = styled(motion.div)`
     margin-bottom: ${theme.spacing.lg};
     
     h4 {
-      color: ${theme.colors.action};
-      font-size: 1.1rem;
+      color: ${theme.colors.primary};
+      font-size: ${theme.fluid.body};
+      font-weight: 600;
       margin-bottom: ${theme.spacing.sm};
     }
 
     p {
-      font-size: 0.95rem;
+      font-size: ${theme.fluid.body};
       line-height: 1.6;
-      opacity: 0.9;
+      color: ${theme.colors.text.secondary};
     }
   }
 
   .impact {
     h4 {
-      color: ${theme.colors.accent};
-      font-size: 1.1rem;
+      color: ${theme.colors.primary};
+      font-size: ${theme.fluid.body};
+      font-weight: 600;
       margin-bottom: ${theme.spacing.sm};
     }
 
@@ -84,17 +116,19 @@ const CaseCard = styled(motion.div)`
       padding: 0;
 
       li {
-        font-size: 0.95rem;
+        font-size: ${theme.fluid.body};
         line-height: 1.6;
+        color: ${theme.colors.text.secondary};
         margin-bottom: ${theme.spacing.xs};
         position: relative;
         padding-left: ${theme.spacing.lg};
 
         &::before {
-          content: '▶';
+          content: '•';
           position: absolute;
           left: 0;
           color: ${theme.colors.accent};
+          font-weight: bold;
         }
       }
     }
@@ -102,29 +136,39 @@ const CaseCard = styled(motion.div)`
 `;
 
 const ComingSoonCard = styled(motion.div)`
-  background: linear-gradient(135deg, rgba(74, 110, 72, 0.1) 0%, rgba(58, 58, 58, 0.1) 100%);
+  background: ${theme.colors.backgroundSecondary};
   color: ${theme.colors.text.secondary};
   padding: ${theme.spacing.xxl};
-  border-radius: ${theme.borderRadius.lg};
-  border: 2px dashed ${theme.colors.accent};
+  border-radius: ${theme.borderRadius.sm};
+  border: 1px dashed ${theme.colors.border};
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 400px;
+  position: relative;
+  z-index: 1;
+  transition: ${theme.transitions.normal};
+
+  &:hover {
+    border-color: ${theme.colors.neutral};
+    background: ${theme.colors.backgroundPure};
+  }
 
   h3 {
-    font-size: 1.5rem;
-    color: ${theme.colors.accent};
+    font-size: ${theme.fluid.heroSubtitle};
+    font-weight: 600;
+    color: ${theme.colors.text.primary};
     margin-bottom: ${theme.spacing.lg};
+    letter-spacing: -0.01em;
   }
 
   p {
-    font-size: 1.1rem;
+    font-size: ${theme.fluid.body};
     line-height: 1.6;
-    opacity: 0.8;
-    max-width: 300px;
+    color: ${theme.colors.text.secondary};
+    max-width: 350px;
   }
 `;
 

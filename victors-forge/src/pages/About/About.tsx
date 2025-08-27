@@ -9,8 +9,28 @@ import bigornaIcon from '../../assets/bigorna.svg';
 import fogoIcon from '../../assets/fogo.svg';
 
 const AboutSection = styled(Section)`
-  background-color: ${theme.colors.neutral};
+  background: ${theme.colors.background};
   color: ${theme.colors.text.primary};
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, 
+      rgba(74, 110, 72, 0.01) 0%, 
+      rgba(47, 62, 70, 0.02) 50%,
+      rgba(212, 160, 23, 0.01) 100%
+    );
+    pointer-events: none;
+  }
 `;
 
 const ContentWrapper = styled.div`
@@ -18,6 +38,8 @@ const ContentWrapper = styled.div`
   grid-template-columns: 1fr 2fr;
   gap: ${theme.spacing.xxxl};
   align-items: center;
+  position: relative;
+  z-index: 1;
 
   @media (max-width: ${theme.breakpoints.tablet}) {
     grid-template-columns: 1fr;
@@ -32,10 +54,17 @@ const AvatarContainer = styled(motion.div)`
   align-items: center;
 
   img {
-    width: 300px;
-    height: 300px;
-    border-radius: ${theme.borderRadius.lg};
-    box-shadow: ${theme.shadows.strong};
+    width: 280px;
+    height: 280px;
+    border-radius: ${theme.borderRadius.md};
+    box-shadow: ${theme.shadows.subtle};
+    filter: grayscale(20%);
+    transition: ${theme.transitions.normal};
+  }
+
+  &:hover img {
+    filter: grayscale(0%);
+    box-shadow: ${theme.shadows.medium};
   }
 
   @media (max-width: ${theme.breakpoints.mobile}) {
@@ -49,23 +78,32 @@ const AvatarContainer = styled(motion.div)`
 const TextContent = styled.div``;
 
 const Title = styled(motion.h2)`
-  font-size: 2.5rem;
-  color: ${theme.colors.accent};
+  font-size: ${theme.fluid.sectionTitle};
+  font-weight: 600;
+  color: ${theme.colors.text.primary};
   margin-bottom: ${theme.spacing.lg};
+  letter-spacing: -0.02em;
 
   @media (max-width: ${theme.breakpoints.mobile}) {
-    font-size: 2rem;
+    font-size: ${theme.fluid.heroSubtitle};
   }
 `;
 
 const Mission = styled(motion.p)`
-  font-size: 1.3rem;
+  font-size: ${theme.fluid.heroSubtitle};
+  font-weight: 400;
   line-height: 1.6;
   margin-bottom: ${theme.spacing.xxl};
-  opacity: 0.95;
+  color: ${theme.colors.text.secondary};
+  max-width: 600px;
+
+  strong {
+    color: ${theme.colors.primary};
+    font-weight: 600;
+  }
 
   @media (max-width: ${theme.breakpoints.mobile}) {
-    font-size: 1.1rem;
+    max-width: 100%;
   }
 `;
 
@@ -81,9 +119,17 @@ const BulletItem = styled(motion.li)`
   gap: ${theme.spacing.lg};
   margin-bottom: ${theme.spacing.xl};
   padding: ${theme.spacing.lg};
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: ${theme.borderRadius.md};
-  border-left: 4px solid ${theme.colors.accent};
+  background: ${theme.colors.backgroundPure};
+  border-radius: ${theme.borderRadius.sm};
+  border: 1px solid ${theme.colors.border};
+  box-shadow: ${theme.shadows.subtle};
+  transition: ${theme.transitions.normal};
+
+  &:hover {
+    border-color: ${theme.colors.neutral};
+    box-shadow: ${theme.shadows.medium};
+    transform: translateY(-2px);
+  }
 
   &:last-child {
     margin-bottom: 0;
@@ -92,31 +138,35 @@ const BulletItem = styled(motion.li)`
 
 const IconWrapper = styled.div`
   flex-shrink: 0;
-  width: 48px;
-  height: 48px;
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: ${theme.colors.primary};
-  border-radius: ${theme.borderRadius.md};
+  background: ${theme.colors.backgroundSecondary};
+  border: 1px solid ${theme.colors.border};
+  border-radius: ${theme.borderRadius.sm};
 
   img {
-    width: 28px;
-    height: 28px;
+    width: 24px;
+    height: 24px;
+    opacity: 0.7;
   }
 `;
 
 const BulletContent = styled.div`
   h3 {
-    font-size: 1.2rem;
-    color: ${theme.colors.accent};
+    font-size: ${theme.fluid.body};
+    font-weight: 600;
+    color: ${theme.colors.text.primary};
     margin-bottom: ${theme.spacing.sm};
+    letter-spacing: -0.01em;
   }
 
   p {
-    font-size: 1rem;
+    font-size: ${theme.fluid.body};
     line-height: 1.6;
-    opacity: 0.9;
+    color: ${theme.colors.text.secondary};
   }
 `;
 

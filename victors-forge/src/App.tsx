@@ -15,7 +15,7 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       staleTime: 1000 * 60 * 5, // 5 minutes
-      cacheTime: 1000 * 60 * 10, // 10 minutes
+      gcTime: 1000 * 60 * 10, // 10 minutes (renamed from cacheTime)
     },
   },
 });
@@ -26,9 +26,9 @@ function App() {
       <ThemeProvider theme={theme}>
         <GlobalStyles />
         <Router>
-          <div className="App">
+          <div className="App" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
             <Header />
-            <main>
+            <main style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/sobre" element={<About />} />

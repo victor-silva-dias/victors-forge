@@ -1,0 +1,32 @@
+/* styles/Quill.css */
+
+/* Dark Mode styles for React-Quill */
+
+.ql-snow.dark-mode .ql-toolbar {
+  background-color: #1f2937; /* bg-darkSurface */
+  border-color: #374151; /* border-darkBorder */
+}
+
+.ql-snow.dark-mode .ql-toolbar .ql-picker-label,
+.ql-snow.dark-mode .ql-toolbar .ql-stroke,
+.ql-snow.dark-mode .ql-toolbar .ql-fill {
+  color: #d1d5db; /* text-gray-300 */
+}
+
+.ql-snow.dark-mode .ql-toolbar .ql-picker-item:hover {
+  background-color: #374151;
+}
+
+.ql-snow.dark-mode .ql-container {
+  background-color: #111827; /* bg-deepDark */
+  border-color: #374151; /* border-darkBorder */
+  color: #f9fafb; /* text-stellarWhite */
+}
+
+.ql-snow.dark-mode .ql-editor::before {
+  color: #9ca3af; /* placeholder-naveGray */
+}
+
+.ql-snow.dark-mode .ql-editor {
+  color: #f9fafb; /* text-stellarWhite */
+}
