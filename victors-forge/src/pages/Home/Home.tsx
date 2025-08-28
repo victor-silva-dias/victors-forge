@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { theme } from '../../styles/theme';
-import { Container, Section, Flex } from '../../styles/GlobalStyles';
+import { Container, Section } from '../../styles/GlobalStyles';
 import fogoIcon from '../../assets/fogo.svg';
 
 const HeroSection = styled(Section)`

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { theme } from '../../styles/theme';
-import { Container, Section, Flex } from '../../styles/GlobalStyles';
+import { Container, Section } from '../../styles/GlobalStyles';
 import anaoPerfilIcon from '../../assets/anao-perfil.svg';
 import marteloIcon from '../../assets/martelo.svg';
 import bigornaIcon from '../../assets/bigorna.svg';
