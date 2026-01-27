@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(bun install)",
+      "Bash(bun run build)",
+      "Bash(timeout 5 bun run dev:*)",
+      "Bash(git -C \"d:\\\\Victor''s Forge\\\\Project\\\\victors-forge\" remote -v)",
+      "Bash(git -C \"d:/Victor''s Forge/Project/victors-forge\" status)",
+      "Bash(git config:*)",
+      "Bash(git add:*)",
+      "Bash(wc -l \"D:\\\\Apolus.ai\\\\Projects\\\\orion\\\\docs\"/**/*.md)"
+    ]
+  }
+}
