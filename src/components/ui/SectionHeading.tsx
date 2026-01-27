@@ -6,6 +6,7 @@ interface SectionHeadingProps {
   title: string;
   subtitle?: string;
   centered?: boolean;
+  light?: boolean;
 }
 
 const Container = styled.div<{ centered?: boolean }>`
@@ -26,10 +27,10 @@ const Subtitle = styled(motion.span)`
   display: block;
 `;
 
-const Title = styled(motion.h2)`
+const Title = styled(motion.h2)<{ $light?: boolean }>`
   font-family: ${theme.fonts.heading};
   font-size: ${theme.fluid.sectionTitle};
-  color: ${theme.colors.text.primary};
+  color: ${props => props.$light ? theme.colors.text.light : theme.colors.text.primary};
   margin-bottom: ${theme.spacing.sm};
   position: relative;
   
@@ -43,7 +44,7 @@ const Title = styled(motion.h2)`
   }
 `;
 
-export const SectionHeading = ({ title, subtitle, centered = false }: SectionHeadingProps) => {
+export const SectionHeading = ({ title, subtitle, centered = false, light = false }: SectionHeadingProps) => {
   return (
     <Container centered={centered}>
       {subtitle && (
@@ -57,6 +58,7 @@ export const SectionHeading = ({ title, subtitle, centered = false }: SectionHea
         </Subtitle>
       )}
       <Title
+        $light={light}
         initial={{ opacity: 0, scale: 0.95 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
