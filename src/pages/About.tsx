@@ -1,6 +1,5 @@
 import { Container, Section } from '../styles/GlobalStyles';
 import { SectionHeading } from '../components/ui/SectionHeading';
-import { HeroGlitch } from '../components/ui/HeroGlitch';
 
 export default function About() {
   return (
