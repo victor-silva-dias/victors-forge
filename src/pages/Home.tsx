@@ -120,16 +120,16 @@ const ScrollLine = styled(motion.div)`
 `;
 
 // ============================================
-// ATO 2: POR QUE A FORJA - Styled Components
+// ATO 2: A FORJA - Styled Components (Redesign)
 // ============================================
 
 const Act2Section = styled.section`
   position: relative;
-  padding: ${theme.spacing.xl} 0 ${theme.spacing.xxxl};
+  padding: ${theme.spacing.xxxl} 0;
   background: ${theme.colors.backgroundDark};
   overflow: hidden;
 
-  /* Glow no topo - espelho do Ato 1 */
+  /* Glow no topo - espelho do Ato 1 (efeito sol esférico) */
   &::before {
     content: '';
     position: absolute;
@@ -150,53 +150,163 @@ const Act2Section = styled.section`
 const Act2Content = styled.div`
   position: relative;
   z-index: 1;
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
   text-align: center;
 `;
 
-const Act2Subtitle = styled(motion.span)`
-  display: block;
-  font-size: 0.85rem;
+const Act2Label = styled(motion.span)`
+  display: inline-block;
+  font-size: 0.75rem;
   color: ${theme.colors.accent};
   text-transform: uppercase;
   letter-spacing: 3px;
-  margin-bottom: ${theme.spacing.md};
+  padding: ${theme.spacing.xs} ${theme.spacing.lg};
+  border: 1px solid rgba(212, 160, 23, 0.4);
+  border-radius: ${theme.borderRadius.full};
+  margin-bottom: ${theme.spacing.lg};
 `;
 
-const Act2Title = styled(motion.h2)`
-  font-size: clamp(1.8rem, 4vw, 2.5rem);
+const Act2Headline = styled(motion.h2)`
+  font-size: clamp(2rem, 5vw, 3rem);
   color: ${theme.colors.text.light};
-  margin-bottom: ${theme.spacing.xl};
-  line-height: 1.3;
+  margin-bottom: ${theme.spacing.md};
+  line-height: 1.2;
+  
+  /* Gradiente dourado no texto */
+  background: linear-gradient(135deg, 
+    ${theme.colors.accent} 0%, 
+    #f5d48a 50%,
+    ${theme.colors.accent} 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 `;
 
-const Act2Manifesto = styled(motion.p)`
-  font-size: clamp(1rem, 2vw, 1.15rem);
+const Act2Subheading = styled(motion.p)`
+  font-size: clamp(1rem, 2vw, 1.2rem);
   color: ${theme.colors.neutralLight};
-  line-height: 1.8;
-  margin-bottom: ${theme.spacing.xxl};
+  margin-bottom: ${theme.spacing.xl};
+  font-style: italic;
 `;
 
-const PillarsRow = styled.div`
+const Act2Body = styled(motion.div)`
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+  color: ${theme.colors.neutralLight};
+  line-height: 1.9;
+  margin-bottom: ${theme.spacing.xxl};
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  
+  p {
+    margin-bottom: ${theme.spacing.md};
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+`;
+
+// Timeline Visual (Pedra -> Forja -> Diamante)
+const TimelineContainer = styled(motion.div)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: ${theme.spacing.md};
+  margin: ${theme.spacing.xxl} 0;
+  padding: ${theme.spacing.xl} 0;
+  position: relative;
+`;
+
+const TimelineNode = styled(motion.div)<{ $glow?: boolean }>`
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  
+  img {
+    width: 60px;
+    height: 60px;
+    filter: ${props => props.$glow 
+      ? 'drop-shadow(0 0 20px rgba(212, 160, 23, 0.8))' 
+      : 'drop-shadow(0 0 10px rgba(212, 160, 23, 0.4))'};
+  }
+  
+  ${props => props.$glow && `
+    &::after {
+      content: '';
+      position: absolute;
+      inset: -10px;
+      background: radial-gradient(circle, rgba(212, 160, 23, 0.3) 0%, transparent 70%);
+      border-radius: 50%;
+      z-index: -1;
+    }
+  `}
+`;
+
+const TimelineLine = styled(motion.div)`
+  height: 2px;
+  width: 80px;
+  background: linear-gradient(90deg, 
+    rgba(212, 160, 23, 0.2) 0%,
+    rgba(212, 160, 23, 0.6) 50%,
+    rgba(212, 160, 23, 0.2) 100%
+  );
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background: ${theme.colors.accent};
+    border-radius: 50%;
+    box-shadow: 0 0 10px ${theme.colors.accent};
+  }
+  
+  @media (max-width: ${theme.breakpoints.mobile}) {
+    width: 40px;
+  }
+`;
+
+// Cards de Fundamento (Ex-Pilares)
+const FoundationRow = styled.div`
   display: flex;
   justify-content: center;
-  gap: ${theme.spacing.xl};
+  gap: ${theme.spacing.lg};
   flex-wrap: wrap;
   margin-top: ${theme.spacing.xl};
 `;
 
-const Pillar = styled(motion.div)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: ${theme.spacing.sm};
-  max-width: 180px;
+const FoundationCard = styled(motion.div)`
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(212, 160, 23, 0.2);
+  border-radius: ${theme.borderRadius.lg};
+  padding: ${theme.spacing.lg};
+  min-width: 180px;
+  max-width: 200px;
+  text-align: center;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    border-color: rgba(212, 160, 23, 0.5);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(212, 160, 23, 0.1);
+  }
 `;
 
-const PillarIcon = styled.div`
+const FoundationIcon = styled.div`
   width: 48px;
   height: 48px;
+  margin: 0 auto ${theme.spacing.md};
   
   img {
     width: 100%;
@@ -205,10 +315,19 @@ const PillarIcon = styled.div`
   }
 `;
 
-const PillarLabel = styled.span`
-  font-size: 0.9rem;
+const FoundationTitle = styled.span`
+  display: block;
+  font-size: 1rem;
   color: ${theme.colors.text.light};
   font-weight: 600;
+  margin-bottom: ${theme.spacing.xs};
+`;
+
+const FoundationMicrocopy = styled.span`
+  display: block;
+  font-size: 0.8rem;
+  color: ${theme.colors.neutralLight};
+  font-style: italic;
 `;
 
 // ============================================
@@ -424,70 +543,143 @@ export default function Home() {
         </ScrollIndicator>
       </Act1Section>
 
-      {/* ATO 2: POR QUE A FORJA */}
+      {/* ATO 2: A FORJA */}
       <Act2Section>
         <Container>
           <Act2Content>
-            <Act2Subtitle
+            {/* Label */}
+            <Act2Label
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              Por que isso existe
-            </Act2Subtitle>
+              Por que a Forja?
+            </Act2Label>
             
-            <Act2Title
+            {/* Headline */}
+            <Act2Headline
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              Cansei de alimentar algoritmos que não me pertencem.
-            </Act2Title>
+              A Forja molda o Ferro.<br />A Jornada molda o Ferreiro.
+            </Act2Headline>
             
-            <Act2Manifesto
+            {/* Subheading */}
+            <Act2Subheading
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              Redes sociais são ótimas para alcance, péssimas para profundidade. 
-              Aqui eu documento o que realmente importa: como construo empresas, 
-              como penso sobre produto, e os aprendizados que não cabem em 280 caracteres.
-            </Act2Manifesto>
+              Onde ideias brutas viram ferramentas e cada construção é um passo ao longo da jornada.
+            </Act2Subheading>
+            
+            {/* Timeline Visual: Pedra -> Forja -> Diamante */}
+            <TimelineContainer
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
+              <TimelineNode
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+              >
+                <img src={martelosImg} alt="Pedra Bruta" />
+              </TimelineNode>
+              
+              <TimelineLine
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+              />
+              
+              <TimelineNode $glow
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.8 }}
+              >
+                <img src={bigornaImg} alt="A Forja" />
+              </TimelineNode>
+              
+              <TimelineLine
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 1.0 }}
+              />
+              
+              <TimelineNode
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 1.2 }}
+              >
+                <img src={fogoImg} alt="Diamante" />
+              </TimelineNode>
+            </TimelineContainer>
+            
+            {/* Texto Principal */}
+            <Act2Body
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+            >
+              <p>
+                Toda ideia nasce crua e intangível. A Forja é onde ela é testada, 
+                moldada, lapidada e vira algo real.
+              </p>
+              <p>
+                Aqui documento a jornada de construir teses de produto, experimentos 
+                com IA e Vibe Coding, lições de negócio e os erros que acontecem ao 
+                longo da Jornada. Este é meu laboratório aberto, onde o caminho 
+                importa tanto quanto o destino.
+              </p>
+            </Act2Body>
 
-            <PillarsRow>
-              <Pillar
+            {/* Cards de Fundamento */}
+            <FoundationRow>
+              <FoundationCard
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: 0.3 }}
+                transition={{ duration: 0.4, delay: 0.6 }}
               >
-                <PillarIcon><img src={martelosImg} alt="Soberania" /></PillarIcon>
-                <PillarLabel>Soberania Intelectual</PillarLabel>
-              </Pillar>
+                <FoundationIcon><img src={martelosImg} alt="Soberania" /></FoundationIcon>
+                <FoundationTitle>Soberania</FoundationTitle>
+                <FoundationMicrocopy>Ideias em terreno próprio</FoundationMicrocopy>
+              </FoundationCard>
               
-              <Pillar
+              <FoundationCard
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: 0.4 }}
+                transition={{ duration: 0.4, delay: 0.7 }}
               >
-                <PillarIcon><img src={bigornaImg} alt="Profundidade" /></PillarIcon>
-                <PillarLabel>Profundidade Real</PillarLabel>
-              </Pillar>
+                <FoundationIcon><img src={bigornaImg} alt="Profundidade" /></FoundationIcon>
+                <FoundationTitle>Profundidade</FoundationTitle>
+                <FoundationMicrocopy>O fundamento, não o hype</FoundationMicrocopy>
+              </FoundationCard>
               
-              <Pillar
+              <FoundationCard
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: 0.5 }}
+                transition={{ duration: 0.4, delay: 0.8 }}
               >
-                <PillarIcon><img src={fogoImg} alt="Documentação" /></PillarIcon>
-                <PillarLabel>Jornada Documentada</PillarLabel>
-              </Pillar>
-            </PillarsRow>
+                <FoundationIcon><img src={fogoImg} alt="Jornada" /></FoundationIcon>
+                <FoundationTitle>Jornada</FoundationTitle>
+                <FoundationMicrocopy>O processo como ativo</FoundationMicrocopy>
+              </FoundationCard>
+            </FoundationRow>
           </Act2Content>
         </Container>
       </Act2Section>
