@@ -191,21 +191,66 @@ const Act2Subheading = styled(motion.p)`
   font-style: italic;
 `;
 
-const Act2Body = styled(motion.div)`
-  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+const ManifestoCard = styled(motion.div)`
+  position: relative;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(212, 160, 23, 0.15);
+  border-radius: ${theme.borderRadius.lg};
+  padding: ${theme.spacing.xl} ${theme.spacing.xxl};
+  margin: ${theme.spacing.xl} auto ${theme.spacing.xxl};
+  max-width: 800px;
+  text-align: left;
+  
+  /* Aspas decorativas */
+  &::before {
+    content: '"';
+    position: absolute;
+    top: -20px;
+    left: 30px;
+    font-size: 6rem;
+    font-family: Georgia, serif;
+    color: ${theme.colors.accent};
+    opacity: 0.3;
+    line-height: 1;
+  }
+  
+  @media (max-width: ${theme.breakpoints.tablet}) {
+    padding: ${theme.spacing.lg};
+    text-align: center;
+    
+    &::before {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+`;
+
+const ManifestoHighlight = styled.p`
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  color: ${theme.colors.text.light};
+  font-weight: 500;
+  line-height: 1.7;
+  margin-bottom: ${theme.spacing.lg};
+  padding-left: ${theme.spacing.lg};
+  border-left: 3px solid ${theme.colors.accent};
+  
+  @media (max-width: ${theme.breakpoints.tablet}) {
+    border-left: none;
+    padding-left: 0;
+    border-bottom: 2px solid ${theme.colors.accent};
+    padding-bottom: ${theme.spacing.md};
+  }
+`;
+
+const ManifestoText = styled.p`
+  font-size: clamp(0.95rem, 1.5vw, 1.05rem);
   color: ${theme.colors.neutralLight};
   line-height: 1.9;
-  margin-bottom: ${theme.spacing.xxl};
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
+  padding-left: ${theme.spacing.lg};
   
-  p {
-    margin-bottom: ${theme.spacing.md};
-    
-    &:last-child {
-      margin-bottom: 0;
-    }
+  @media (max-width: ${theme.breakpoints.tablet}) {
+    padding-left: 0;
   }
 `;
 
@@ -626,60 +671,24 @@ export default function Home() {
               </TimelineNode>
             </TimelineContainer>
             
-            {/* Texto Principal */}
-            <Act2Body
+            {/* Texto Principal - Card Manifesto */}
+            <ManifestoCard
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.5 }}
             >
-              <p>
+              <ManifestoHighlight>
                 Toda ideia nasce crua e intangível. A Forja é onde ela é testada, 
                 moldada, lapidada e vira algo real.
-              </p>
-              <p>
+              </ManifestoHighlight>
+              <ManifestoText>
                 Aqui documento a jornada de construir teses de produto, experimentos 
                 com IA e Vibe Coding, lições de negócio e os erros que acontecem ao 
                 longo da Jornada. Este é meu laboratório aberto, onde o caminho 
                 importa tanto quanto o destino.
-              </p>
-            </Act2Body>
-
-            {/* Cards de Fundamento */}
-            <FoundationRow>
-              <FoundationCard
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: 0.6 }}
-              >
-                <FoundationIcon><img src={martelosImg} alt="Soberania" /></FoundationIcon>
-                <FoundationTitle>Soberania</FoundationTitle>
-                <FoundationMicrocopy>Ideias em terreno próprio</FoundationMicrocopy>
-              </FoundationCard>
-              
-              <FoundationCard
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: 0.7 }}
-              >
-                <FoundationIcon><img src={bigornaImg} alt="Profundidade" /></FoundationIcon>
-                <FoundationTitle>Profundidade</FoundationTitle>
-                <FoundationMicrocopy>O fundamento, não o hype</FoundationMicrocopy>
-              </FoundationCard>
-              
-              <FoundationCard
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: 0.8 }}
-              >
-                <FoundationIcon><img src={fogoImg} alt="Jornada" /></FoundationIcon>
-                <FoundationTitle>Jornada</FoundationTitle>
-                <FoundationMicrocopy>O processo como ativo</FoundationMicrocopy>
-              </FoundationCard>
-            </FoundationRow>
+              </ManifestoText>
+            </ManifestoCard>
           </Act2Content>
         </Container>
       </Act2Section>
