@@ -321,60 +321,6 @@ const TimelineLine = styled(motion.div)`
   }
 `;
 
-// Cards de Fundamento (Ex-Pilares)
-const FoundationRow = styled.div`
-  display: flex;
-  justify-content: center;
-  gap: ${theme.spacing.lg};
-  flex-wrap: wrap;
-  margin-top: ${theme.spacing.xl};
-`;
-
-const FoundationCard = styled(motion.div)`
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(212, 160, 23, 0.2);
-  border-radius: ${theme.borderRadius.lg};
-  padding: ${theme.spacing.lg};
-  min-width: 180px;
-  max-width: 200px;
-  text-align: center;
-  transition: all 0.3s ease;
-  
-  &:hover {
-    border-color: rgba(212, 160, 23, 0.5);
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(212, 160, 23, 0.1);
-  }
-`;
-
-const FoundationIcon = styled.div`
-  width: 48px;
-  height: 48px;
-  margin: 0 auto ${theme.spacing.md};
-  
-  img {
-    width: 100%;
-    height: 100%;
-    filter: brightness(0) saturate(100%) invert(73%) sepia(54%) saturate(456%) hue-rotate(6deg) brightness(95%) contrast(94%);
-  }
-`;
-
-const FoundationTitle = styled.span`
-  display: block;
-  font-size: 1rem;
-  color: ${theme.colors.text.light};
-  font-weight: 600;
-  margin-bottom: ${theme.spacing.xs};
-`;
-
-const FoundationMicrocopy = styled.span`
-  display: block;
-  font-size: 0.8rem;
-  color: ${theme.colors.neutralLight};
-  font-style: italic;
-`;
-
 // ============================================
 // ATO 3: O FERREIRO - Styled Components
 // ============================================
