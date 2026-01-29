@@ -11,6 +11,7 @@ import martelosImg from '../assets/martelos crizados.svg';
 import bigornaImg from '../assets/bigorna.svg';
 import fogoImg from '../assets/fogo.svg';
 import anaoImg from '../assets/anao-perfil.svg';
+import victorPhoto from '../assets/victor-photo.png';
 
 // ============================================
 // ATO 1: A CHEGADA - Styled Components
@@ -321,98 +322,208 @@ const TimelineLine = styled(motion.div)`
   }
 `;
 
+
+
 // ============================================
-// ATO 3: O FERREIRO - Styled Components
+// ATO 3: O FERREIRO - Styled Components (Redesign Fluido)
 // ============================================
 
-const Act3Section = styled(Section)`
+const Act3Section = styled.section`
+  padding: ${theme.spacing.xxxl} 0;
   background: ${theme.colors.backgroundDark};
+  position: relative;
+  overflow: hidden;
 `;
 
-const BlacksmithCard = styled.div`
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: ${theme.spacing.xxl};
-  align-items: center;
+const Act3Content = styled.div`
+  position: relative;
+  z-index: 1;
   max-width: 900px;
   margin: 0 auto;
-
-  @media (max-width: ${theme.breakpoints.tablet}) {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-`;
-
-const BlacksmithImage = styled(motion.img)`
-  max-width: 200px;
-  filter: drop-shadow(0 10px 30px rgba(0,0,0,0.1));
-`;
-
-const BlacksmithInfo = styled.div``;
-
-const BlacksmithName = styled.h2`
-  font-size: clamp(1.5rem, 4vw, 2rem);
-  color: ${theme.colors.text.light};
-  margin-bottom: ${theme.spacing.xs};
-`;
-
-const BlacksmithClass = styled.p`
-  color: ${theme.colors.accent};
-  font-size: 1rem;
-  font-weight: 600;
-  margin-bottom: ${theme.spacing.md};
-  text-transform: uppercase;
-  letter-spacing: 2px;
-`;
-
-const StatsGrid = styled.div`
-  display: flex;
-  gap: ${theme.spacing.lg};
-  flex-wrap: wrap;
-  margin-bottom: ${theme.spacing.lg};
-
-  @media (max-width: ${theme.breakpoints.tablet}) {
-    justify-content: center;
-  }
-`;
-
-const StatBadge = styled.div`
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(212, 160, 23, 0.3);
-  border-radius: ${theme.borderRadius.md};
-  padding: ${theme.spacing.sm} ${theme.spacing.md};
   text-align: center;
-  min-width: 80px;
+  padding: 0 ${theme.spacing.lg};
 `;
 
-const StatValue = styled.div`
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: ${theme.colors.accent};
-`;
-
-const StatLabel = styled.div`
-  font-size: 0.7rem;
-  color: ${theme.colors.neutralLight};
-  text-transform: uppercase;
-  letter-spacing: 1px;
-`;
-
-const BlacksmithBio = styled.p`
-  color: ${theme.colors.text.secondary};
-  line-height: 1.7;
-  max-width: 500px;
-`;
-
-const ProfileLink = styled(Link)`
+const Act3Label = styled(motion.span)`
   display: inline-block;
-  margin-top: ${theme.spacing.md};
+  font-size: 0.75rem;
   color: ${theme.colors.accent};
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  padding: ${theme.spacing.xs} ${theme.spacing.lg};
+  border: 1px solid rgba(212, 160, 23, 0.4);
+  border-radius: ${theme.borderRadius.full};
+  margin-bottom: ${theme.spacing.xl};
+`;
+
+const ProfileVisual = styled(motion.div)`
+  position: relative;
+  display: inline-block;
+  margin-bottom: ${theme.spacing.md};
+
+  /* Glow orgânico atrás da foto */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 280px;
+    height: 280px;
+    background: radial-gradient(circle,
+      rgba(212, 160, 23, 0.3) 0%,
+      rgba(255, 122, 0, 0.15) 35%,
+      transparent 65%
+    );
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  @media (max-width: ${theme.breakpoints.tablet}) {
+    &::before {
+      width: 220px;
+      height: 220px;
+    }
+  }
+`;
+
+const ProfilePhoto = styled(motion.img)`
+  width: 200px;
+  height: auto;
+  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.4))
+          drop-shadow(0 0 40px rgba(212, 160, 23, 0.15));
+  position: relative;
+  z-index: 1;
+
+  /* Fade suave na parte inferior */
+  mask-image: linear-gradient(to bottom,
+    black 0%,
+    black 70%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(to bottom,
+    black 0%,
+    black 70%,
+    transparent 100%
+  );
+
+  @media (max-width: ${theme.breakpoints.tablet}) {
+    width: 160px;
+  }
+`;
+
+const DwarfWatermark = styled(motion.img)`
+  position: absolute;
+  top: -20px;
+  right: -60px;
+  width: 120px;
+  opacity: 0.25;
+  filter: drop-shadow(0 0 20px rgba(212, 160, 23, 0.5));
+  z-index: 0;
+  pointer-events: none;
+
+  @media (max-width: ${theme.breakpoints.tablet}) {
+    width: 80px;
+    right: -30px;
+    top: -10px;
+  }
+`;
+
+const ProfileName = styled(motion.h2)`
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  color: ${theme.colors.text.light};
+  line-height: 1.1;
+  font-weight: 700;
+  margin-bottom: ${theme.spacing.sm};
+
+  span {
+    /* Gradiente dourado como no Act2Headline */
+    background: linear-gradient(135deg,
+      ${theme.colors.accent} 0%,
+      #f5d48a 50%,
+      ${theme.colors.accent} 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+`;
+
+const ProfileTagline = styled(motion.p)`
+  font-family: ${theme.fonts.heading};
+  font-style: italic;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: ${theme.colors.neutralLight};
+  margin-bottom: ${theme.spacing.xl};
+`;
+
+const SkillBadgeContainer = styled(motion.div)`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: ${theme.spacing.sm};
+  margin-bottom: ${theme.spacing.xl};
+`;
+
+const SkillBadge = styled(motion.span)`
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 8px 16px;
+  border-radius: ${theme.borderRadius.full};
+  font-size: 0.85rem;
+  color: ${theme.colors.text.tertiary};
+
+  &.highlight {
+    border-color: rgba(212, 160, 23, 0.5);
+    color: ${theme.colors.accent};
+    background: rgba(212, 160, 23, 0.08);
+  }
+`;
+
+const ProfileBioCard = styled(motion.div)`
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(212, 160, 23, 0.15);
+  border-radius: ${theme.borderRadius.lg};
+  padding: ${theme.spacing.xl} ${theme.spacing.xxl};
+  margin: 0 auto ${theme.spacing.xl};
+  max-width: 700px;
+  text-align: left;
+
+  /* Borda dourada lateral como no ManifestoCard */
+  border-left: 3px solid ${theme.colors.accent};
+
+  @media (max-width: ${theme.breakpoints.tablet}) {
+    padding: ${theme.spacing.lg};
+    text-align: center;
+    border-left: none;
+    border-top: 3px solid ${theme.colors.accent};
+  }
+`;
+
+const ProfileBio = styled.p`
+  font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+  line-height: 1.9;
+  color: ${theme.colors.neutralLight};
+`;
+
+const ProfileCTA = styled(Link)`
+  display: inline-flex;
+  align-items: center;
+  gap: ${theme.spacing.sm};
+  color: ${theme.colors.text.light};
   font-weight: 600;
   text-decoration: none;
-  
+  font-size: 1rem;
+  padding: ${theme.spacing.md} ${theme.spacing.xl};
+  border: 1px solid ${theme.colors.accent};
+  border-radius: ${theme.borderRadius.sm};
+  transition: all 0.3s ease;
+
   &:hover {
-    text-decoration: underline;
+    background: rgba(212, 160, 23, 0.15);
+    box-shadow: 0 0 20px rgba(212, 160, 23, 0.2);
+    transform: translateY(-2px);
   }
 `;
 
@@ -640,55 +751,94 @@ export default function Home() {
       </Act2Section>
 
       {/* ATO 3: O FERREIRO */}
-      <Act3Section variant="spacious">
-        <Container>
-          <BlacksmithCard>
-            <BlacksmithImage 
-              src={anaoImg} 
-              alt="Victor Dias"
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+      <Act3Section>
+        <Act3Content>
+          {/* Label */}
+          <Act3Label
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            O Ferreiro
+          </Act3Label>
+
+          {/* Foto com glow orgânico */}
+          <ProfileVisual
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+          >
+            <DwarfWatermark
+              src={anaoImg}
+              alt="Spirit of the Forge"
+              animate={{ rotate: [0, 5, 0] }}
+              transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
             />
-            
-            <BlacksmithInfo>
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-              >
-                <BlacksmithClass>Co-founder & Builder</BlacksmithClass>
-                <BlacksmithName>Victor Dias</BlacksmithName>
-                
-                <StatsGrid>
-                  <StatBadge>
-                    <StatValue>+5</StatValue>
-                    <StatLabel>Anos Tech</StatLabel>
-                  </StatBadge>
-                  <StatBadge>
-                    <StatValue>AI</StatValue>
-                    <StatLabel>Especialidade</StatLabel>
-                  </StatBadge>
-                  <StatBadge>
-                    <StatValue>🔥</StatValue>
-                    <StatLabel>Bootstrap</StatLabel>
-                  </StatBadge>
-                </StatsGrid>
-                
-                <BlacksmithBio>
-                  Visão estratégica, execução de produto, resiliência de founder. 
-                  Uso IA como alavanca para construir negócios soberanos e lucrativos.
-                </BlacksmithBio>
-                
-                <ProfileLink to="/sobre">
-                  Conhecer mais →
-                </ProfileLink>
-              </motion.div>
-            </BlacksmithInfo>
-          </BlacksmithCard>
-        </Container>
+            <ProfilePhoto src={victorPhoto} alt="Victor Dias" />
+          </ProfileVisual>
+
+          {/* Nome */}
+          <ProfileName
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            Victor <span>Dias</span>
+          </ProfileName>
+
+          {/* Tagline */}
+          <ProfileTagline
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
+            Founder por escolha. Builder por natureza.
+          </ProfileTagline>
+
+          {/* Badges */}
+          <SkillBadgeContainer
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+          >
+            <SkillBadge className="highlight">Founder</SkillBadge>
+            <SkillBadge>Gestão de Produto</SkillBadge>
+            <SkillBadge className="highlight">AI</SkillBadge>
+            <SkillBadge>Business</SkillBadge>
+          </SkillBadgeContainer>
+
+          {/* Bio Card */}
+          <ProfileBioCard
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+          >
+            <ProfileBio>
+              Minha base é gestão de produto. Minha alavanca é a IA. Junto as duas coisas
+              para construir software e estratégia de negócio. A IA não substitui os
+              profissionais de tecnologia, ela amplifica. E quem domina contexto e dados,
+              domina a ferramenta.
+            </ProfileBio>
+          </ProfileBioCard>
+
+          {/* CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.7 }}
+          >
+            <ProfileCTA to="/sobre">
+              Me conheça melhor →
+            </ProfileCTA>
+          </motion.div>
+        </Act3Content>
       </Act3Section>
 
       {/* ATO 4: AS CRIAÇÕES */}
