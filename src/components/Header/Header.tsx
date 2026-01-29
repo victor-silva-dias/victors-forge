@@ -86,7 +86,7 @@ const NavLink = styled(Link)<NavLinkStyleProps>`
 
   &:hover {
     color: ${props => props.$light ? '#fff' : theme.colors.text.primary};
-    background-color: ${props => props.$light ? 'rgba(255,255,255,0.1)' : theme.colors.backgroundSecondary};
+    background-color: ${props => props.$light ? theme.colors.primary : theme.colors.backgroundSecondary};
   }
 
   ${props => props.$isActive && `
