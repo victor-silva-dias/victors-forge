@@ -2,8 +2,7 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { theme } from '../styles/theme';
-import { Container, Section } from '../styles/GlobalStyles';
-import { SectionHeading } from '../components/ui/SectionHeading';
+import { Container } from '../styles/GlobalStyles';
 
 // Assets
 import principalImg from '../assets/principal.svg';
@@ -563,63 +562,311 @@ const ProfileCTA = styled(Link)`
 `;
 
 // ============================================
-// ATO 4: AS CRIAÇÕES - Styled Components
+// ATO 4: SAINDO DA FORJA - Styled Components
 // ============================================
 
-const Act4Section = styled(Section)`
+const Act4Section = styled.section`
+  padding: ${theme.spacing.xxxl} 0;
   background: ${theme.colors.backgroundDark};
+  position: relative;
+  overflow: hidden;
 `;
 
-const ProjectPreview = styled(motion.div)`
-  background: rgba(255, 255, 255, 0.05);
+const Act4Container = styled.div`
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 ${theme.spacing.lg};
+`;
+
+const Act4Header = styled.div`
+  text-align: center;
+  margin-bottom: ${theme.spacing.xxl};
+`;
+
+const Act4Label = styled(motion.span)`
+  display: inline-block;
+  font-size: 0.75rem;
+  color: ${theme.colors.accent};
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  padding: ${theme.spacing.xs} ${theme.spacing.lg};
+  border: 1px solid rgba(212, 160, 23, 0.4);
+  border-radius: ${theme.borderRadius.full};
+  margin-bottom: ${theme.spacing.lg};
+`;
+
+const Act4Headline = styled(motion.h2)`
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  color: ${theme.colors.text.light};
+  margin-bottom: ${theme.spacing.md};
+  line-height: 1.2;
+
+  /* Gradiente dourado no texto */
+  background: linear-gradient(135deg,
+    ${theme.colors.accent} 0%,
+    #f5d48a 50%,
+    ${theme.colors.accent} 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+`;
+
+const Act4ContentGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: ${theme.spacing.lg};
+  margin-bottom: ${theme.spacing.xxl};
+
+  @media (max-width: ${theme.breakpoints.tablet}) {
+    grid-template-columns: 1fr;
+    gap: ${theme.spacing.lg};
+  }
+`;
+
+const ContentBlock = styled(motion.div)`
+  background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(212, 160, 23, 0.2);
+  border: 1px solid rgba(212, 160, 23, 0.15);
   border-radius: ${theme.borderRadius.lg};
   padding: ${theme.spacing.xl};
-  max-width: 600px;
-  margin: 0 auto;
-  text-align: center;
   transition: all 0.3s ease;
 
   &:hover {
     transform: translateY(-5px);
-    border-color: ${theme.colors.accent};
-    box-shadow: 0 10px 40px rgba(212, 160, 23, 0.15);
+    border-color: rgba(212, 160, 23, 0.4);
+    box-shadow: 0 15px 40px rgba(212, 160, 23, 0.1);
   }
 `;
 
-const ProjectLabel = styled.span`
-  display: inline-block;
-  background: ${theme.colors.primary};
-  color: white;
-  font-size: 0.75rem;
-  padding: ${theme.spacing.xs} ${theme.spacing.md};
-  border-radius: ${theme.borderRadius.full};
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: ${theme.spacing.md};
-`;
-
-const ProjectName = styled.h3`
-  font-size: 1.5rem;
-  color: ${theme.colors.text.light};
+const BlockTitle = styled.h3`
+  font-size: 1.3rem;
+  color: ${theme.colors.accent};
   margin-bottom: ${theme.spacing.sm};
+  font-weight: 600;
 `;
 
-const ProjectDesc = styled.p`
+const BlockDesc = styled.p`
+  font-size: 0.95rem;
   color: ${theme.colors.neutralLight};
+  line-height: 1.6;
   margin-bottom: ${theme.spacing.lg};
 `;
 
-const ProjectLink = styled(Link)`
+const BlockItems = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${theme.spacing.sm};
+  margin-bottom: ${theme.spacing.lg};
+`;
+
+const BlockItem = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${theme.spacing.sm};
+  padding: ${theme.spacing.sm} ${theme.spacing.md};
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: ${theme.borderRadius.sm};
+  border-left: 2px solid rgba(212, 160, 23, 0.3);
+  color: ${theme.colors.text.secondary};
+  font-size: 0.9rem;
+
+  &::before {
+    content: '→';
+    color: ${theme.colors.accent};
+    font-size: 0.8rem;
+  }
+`;
+
+const BlockCTA = styled(Link)`
   display: inline-flex;
   align-items: center;
   gap: ${theme.spacing.sm};
-  color: ${theme.colors.accent};
+  color: ${theme.colors.text.light};
   font-weight: 600;
   text-decoration: none;
-  
+  font-size: 0.95rem;
+  padding: ${theme.spacing.sm} ${theme.spacing.lg};
+  border: 1px solid ${theme.colors.accent};
+  border-radius: ${theme.borderRadius.sm};
+  transition: all 0.3s ease;
+
+  &:hover, &:focus, &:active {
+    color: ${theme.colors.text.light};
+    background: ${theme.colors.primary};
+    border-color: ${theme.colors.primary};
+    box-shadow: 0 0 20px rgba(74, 110, 72, 0.3);
+    transform: translateX(5px);
+  }
+
+  &:visited {
+    color: ${theme.colors.text.light};
+  }
+`;
+
+// ============================================
+// ATO 5: A JORNADA CONTINUA - Styled Components
+// ============================================
+
+const Act5Section = styled.section`
+  padding: ${theme.spacing.xxxl} 0;
+  background: ${theme.colors.backgroundDark};
+  position: relative;
+  overflow: hidden;
+
+  /* Sutil glow superior para separar do Act 4 */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 1px;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(212, 160, 23, 0.3) 50%,
+      transparent 100%
+    );
+  }
+`;
+
+const Act5Container = styled.div`
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 ${theme.spacing.lg};
+  text-align: center;
+`;
+
+const Act5Header = styled.div`
+  margin-bottom: ${theme.spacing.xl};
+`;
+
+const Act5Label = styled(motion.span)`
+  display: inline-block;
+  font-size: 0.75rem;
+  color: ${theme.colors.accent};
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  padding: ${theme.spacing.xs} ${theme.spacing.lg};
+  border: 1px solid rgba(212, 160, 23, 0.4);
+  border-radius: ${theme.borderRadius.full};
+  margin-bottom: ${theme.spacing.lg};
+`;
+
+const Act5Headline = styled(motion.h2)`
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  color: ${theme.colors.text.light};
+  margin-bottom: ${theme.spacing.md};
+  line-height: 1.3;
+
+  /* Gradiente dourado no texto */
+  background: linear-gradient(135deg,
+    ${theme.colors.accent} 0%,
+    #f5d48a 50%,
+    ${theme.colors.accent} 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+`;
+
+const Act5Subtitle = styled(motion.p)`
+  font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+  color: ${theme.colors.neutralLight};
+  font-style: italic;
+  margin-bottom: ${theme.spacing.lg};
+`;
+
+const Act5Content = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: ${theme.spacing.xl};
+`;
+
+const NewsletterForm = styled.form`
+  display: flex;
+  gap: ${theme.spacing.sm};
+  width: 100%;
+  max-width: 450px;
+
+  @media (max-width: ${theme.breakpoints.mobile}) {
+    flex-direction: column;
+  }
+`;
+
+const NewsletterInput = styled.input`
+  flex: 1;
+  padding: ${theme.spacing.md} ${theme.spacing.lg};
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(212, 160, 23, 0.3);
+  border-radius: ${theme.borderRadius.sm};
+  color: ${theme.colors.text.light};
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+
+  &::placeholder {
+    color: ${theme.colors.text.tertiary};
+  }
+
+  &:focus {
+    outline: none;
+    border-color: ${theme.colors.accent};
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 15px rgba(212, 160, 23, 0.15);
+  }
+`;
+
+const NewsletterButton = styled.button`
+  padding: ${theme.spacing.md} ${theme.spacing.xl};
+  background: transparent;
+  border: 1px solid ${theme.colors.accent};
+  border-radius: ${theme.borderRadius.sm};
+  color: ${theme.colors.text.light};
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+
   &:hover {
+    background: ${theme.colors.primary};
+    border-color: ${theme.colors.primary};
+    box-shadow: 0 0 20px rgba(74, 110, 72, 0.3);
+    transform: translateY(-2px);
+  }
+`;
+
+const LinkedInLink = styled(motion.a)`
+  display: inline-flex;
+  align-items: center;
+  gap: ${theme.spacing.sm};
+  color: ${theme.colors.text.light};
+  text-decoration: none;
+  font-size: 0.95rem;
+  padding: ${theme.spacing.sm} ${theme.spacing.lg};
+  border: 1px solid rgba(212, 160, 23, 0.4);
+  border-radius: ${theme.borderRadius.sm};
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: ${theme.colors.text.light};
+    background: ${theme.colors.primary};
+    border-color: ${theme.colors.primary};
+    box-shadow: 0 0 15px rgba(74, 110, 72, 0.3);
+    transform: translateY(-2px);
+  }
+`;
+
+const ContactEmail = styled(motion.a)`
+  color: ${theme.colors.accent};
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: ${theme.colors.primary};
     text-decoration: underline;
   }
 `;
@@ -873,33 +1120,151 @@ export default function Home() {
         </Act3Container>
       </Act3Section>
 
-      {/* ATO 4: AS CRIAÇÕES */}
-      <Act4Section variant="spacious">
-        <Container>
-          <SectionHeading 
-            title="Saindo da Forja" 
-            subtitle="Criações" 
-            centered 
-          />
-          
-          <ProjectPreview
+      {/* ATO 4: SAINDO DA FORJA */}
+      <Act4Section>
+        <Act4Container>
+          {/* Header */}
+          <Act4Header>
+            <Act4Label
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              Saindo da Forja
+            </Act4Label>
+
+            <Act4Headline
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              Ideias viram frameworks.<br />Frameworks viram produto.
+            </Act4Headline>
+          </Act4Header>
+
+          {/* Content Grid: Pensamento + Execução */}
+          <Act4ContentGrid>
+            {/* Bloco Pensamento */}
+            <ContentBlock
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
+              <BlockTitle>Pensamento</BlockTitle>
+              <BlockDesc>
+                Teses, frameworks e reflexões sobre produto, IA e construção de negócios.
+              </BlockDesc>
+              <BlockItems>
+                <BlockItem>Em breve: Framework de validação</BlockItem>
+                <BlockItem>Em breve: Tese sobre IA generativa</BlockItem>
+                <BlockItem>Em breve: Reflexões de produto</BlockItem>
+              </BlockItems>
+              <BlockCTA to="/conteudos">
+                Explorar ideias →
+              </BlockCTA>
+            </ContentBlock>
+
+            {/* Bloco Execução */}
+            <ContentBlock
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+            >
+              <BlockTitle>Execução</BlockTitle>
+              <BlockDesc>
+                Projetos reais. Do zero ao produto, do produto ao negócio.
+              </BlockDesc>
+              <BlockItems>
+                <BlockItem>Apolus.ai — IA Jurídica</BlockItem>
+                <BlockItem>Em breve: Novo projeto</BlockItem>
+                <BlockItem>Em breve: Experimento</BlockItem>
+              </BlockItems>
+              <BlockCTA to="/cases">
+                Ver projetos →
+              </BlockCTA>
+            </ContentBlock>
+          </Act4ContentGrid>
+
+        </Act4Container>
+      </Act4Section>
+
+      {/* ATO 5: A JORNADA CONTINUA */}
+      <Act5Section>
+        <Act5Container>
+          <Act5Header>
+            <Act5Label
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              A Jornada Continua
+            </Act5Label>
+
+            <Act5Headline
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              A forja está acesa.<br />Quer acompanhar?
+            </Act5Headline>
+
+            <Act5Subtitle
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              Receba reflexões, frameworks e novidades direto no seu email.
+            </Act5Subtitle>
+          </Act5Header>
+
+          <Act5Content
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <ProjectLabel>Projeto Principal</ProjectLabel>
-            <ProjectName>Apolus.ai</ProjectName>
-            <ProjectDesc>
-              Plataforma de IA Jurídica. O maior case da forja — 
-              do zero ao produto com clientes reais.
-            </ProjectDesc>
-            <ProjectLink to="/projetos">
-              Ver o projeto →
-            </ProjectLink>
-          </ProjectPreview>
-        </Container>
-      </Act4Section>
+            <NewsletterForm onSubmit={(e) => e.preventDefault()}>
+              <NewsletterInput
+                type="email"
+                placeholder="Seu melhor email"
+                aria-label="Email para newsletter"
+              />
+              <NewsletterButton type="submit">
+                Inscrever
+              </NewsletterButton>
+            </NewsletterForm>
+
+            <LinkedInLink
+              href="https://www.linkedin.com/in/victordias0027/"
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.3, delay: 0.4 }}
+            >
+              Me siga no LinkedIn
+            </LinkedInLink>
+
+            <ContactEmail
+              href="mailto:contato@victorsforge.xyz"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.3, delay: 0.5 }}
+            >
+              contato@victorsforge.xyz
+            </ContactEmail>
+          </Act5Content>
+        </Act5Container>
+      </Act5Section>
     </>
   );
 }
