@@ -145,7 +145,56 @@ O design deve transmitir que **Vibe Coding e diferente de Lazy Coding**.
 
 ---
 
-## 7. Iconografia
+## 7. Voice & Copy Style
+
+### Estilo: "Staccato da Forja"
+
+A pontuação funciona como **marteladas do ferreiro** — ritmo, peso, autoridade.
+
+#### Regra de Pontuação Híbrida
+
+| Tipo | Tratamento | Efeito |
+|------|------------|--------|
+| **Frases em par** | COM ponto entre elas | Ritmo staccato, peso de bigorna |
+| **Frases únicas** | SEM ponto final | Fluidez, convite à continuação |
+
+#### Exemplos: Frases em Par (COM ponto)
+
+```
+"A Forja molda o Ferro. A Jornada molda o Ferreiro."
+"O produto evolui. Quem constrói, também."
+"Founder por escolha. Builder por natureza."
+"Ideias viram frameworks. Frameworks viram produto."
+```
+
+O ponto entre as frases cria **pausa intencional** — como o intervalo entre marteladas.
+
+#### Exemplos: Frases Únicas (SEM ponto)
+
+```
+"Onde ideias brutas viram ferramentas reais"
+"Receba reflexões, frameworks e novidades direto no seu email"
+```
+
+A ausência de ponto permite **fluidez** — o leitor continua naturalmente.
+
+#### Exceção: Interrogativas
+
+Perguntas diretas usam **ponto + interrogação** para criar pausa dramática antes do convite:
+
+```
+"A forja está acesa. Quer acompanhar?"
+```
+
+### Tom de Voz
+
+- **Direto, não seco** — Frases curtas com substância
+- **Confiante, não arrogante** — Autoridade vem do craft
+- **Provocativo, não agressivo** — Convida à reflexão
+
+---
+
+## 8. Iconografia
 
 ### Estilo
 
@@ -162,7 +211,7 @@ O design deve transmitir que **Vibe Coding e diferente de Lazy Coding**.
 
 ---
 
-## 8. Implementacao
+## 9. Implementação
 
 ### Arquivo de Referencia
 

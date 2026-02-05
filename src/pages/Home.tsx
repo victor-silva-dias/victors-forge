@@ -894,7 +894,7 @@ export default function Home() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            Bem-vindo à
+            Bem-vindo ao
           </WelcomeText>
           
           <ForgeTitle
@@ -910,7 +910,7 @@ export default function Home() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.7 }}
           >
-            Construindo negócios de IA e com IA.
+            Onde ideias brutas viram ferramentas reais
           </ForgeSubtitle>
         </Act1Content>
 
@@ -958,7 +958,7 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              Onde ideias brutas viram ferramentas e cada construção é um passo ao longo da jornada.
+              O produto evolui. Quem constrói, também.
             </Act2Subheading>
             
             {/* Timeline Visual: Pedra -> Forja -> Diamante */}
@@ -1220,7 +1220,7 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              Receba reflexões, frameworks e novidades direto no seu email.
+              Receba reflexões, frameworks e novidades direto no seu email
             </Act5Subtitle>
           </Act5Header>
 
